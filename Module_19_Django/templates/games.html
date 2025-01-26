@@ -1,0 +1,22 @@
+{% extends "menu.html" %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Игры</title>
+</head>
+<body>
+<h1>Игры</h1>
+     <main>
+        {% block content %}
+        {% for i in games %}
+         <ul>
+            <li><h3>{{ i }} <button> Купить</button></h3></li>
+             </ul>
+         {% endfor %}
+        {% endblock content %}
+    </main>
+
+
+</body>
+</html>
