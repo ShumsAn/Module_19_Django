@@ -2,10 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import UserRegister
 from .models import *
+from django.core.paginator import Paginator
 
 # Create your views here.
 
 users = Buyer.objects.all()
+
 
 # Create your views here.
 def main_page(request):
@@ -71,3 +73,17 @@ def sign_up_by_html(request):
 
     info['form'] = UserRegister()
     return render(request, 'registration_page.html', info)
+
+
+def news(request):
+    # получаем все новости c сортировкой по дате
+    all_news = News.objects.all().order_by('-date')
+    # создаем пагинатор
+    paginator = Paginator(all_news, 10)  # 10 новостей на странице
+    # получаем номер страницы, на которую переходит пользователь
+    page_number = request.GET.get('page')
+    # получаем новости для текущей страницы
+    news = paginator.get_page(page_number)
+    # передаем контекст в шаблон
+    return render(request, 'news.html', {'news': news})
+

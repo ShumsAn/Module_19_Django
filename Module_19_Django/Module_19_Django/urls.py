@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from task1.views import sign_up_by_django,sign_up_by_html,main_page,game_page,cart_page
+from task1.views import sign_up_by_django,sign_up_by_html,main_page,game_page,cart_page,news
 
 
 urlpatterns = [
@@ -26,4 +26,5 @@ urlpatterns = [
     path('django_sign_up/', sign_up_by_html, name='sign_up_by_html'),
     path('game_page/', game_page),
     path('cart_page/', cart_page),
+    path('platform/news/',news),
 ]
